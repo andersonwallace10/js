@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário de Contato - Empresa de Pequenos Reparos</title>
+    <link rel="shortcut icon" href="favicon_io (3)/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="style.css".css>
+    <style>
+      
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Tio Paulo Pequenos Reparos</h1>
+        </div>
+    </header>
+    <div class="container">
+        <nav>
+            <ul class="menu">
+                <ul class="menu">
+                    <li><a href="home.html">Home</a></li>
+                    <li><a href="serviços.html" rel="next">Serviços Oferecidos</a></li>
+                    <li><a href="contato.html" rel="next">Contato</a></li>
+                    <li><a href="prestador.html"rel="next" >Trabalhe conosco</a></li>
+                    <li><a href="testecliente.html" rel="prev" >Cadastro do Cliente</a></li>
+            </ul>
+        </nav>
+    </div>
+    <main>
+        <div class="form-container">
+            <h2>Formulário de Contato</h2>
+            <form id="contactForm" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="nome">Nome completo:</label>
+                    <input type="text" id="nome" name="nome" required>
+                    <span class="error" id="nomeError"></span>
+                </div>
+                <div class="form-group">
+                    <label for="email">E-mail:</label>
+                    <input type="email" id="email" name="email" required>
+                    <span class="error" id="emailError"></span>
+                </div>
+                <div class="form-group">
+                    <label for="telefone">Telefone:</label>
+                    <input type="text" id="telefone" name="telefone" placeholder="+55 (DDD) 9XXXX-XXXX" required>
+                    <span class="error" id="telefoneError"></span>
+                </div>
+                <div class="form-group">
+                    <label for="data_nascimento">Data de nascimento:</label>
+                    <input type="date" id="data_nascimento" name="data_nascimento" required>
+                    <span class="error" id="idadeError"></span>
+                </div>
+                <div class="form-group">
+                    <label for="cep">CEP:</label>
+                    <input type="text" id="cep" name="cep" maxlength="8" required>
+                    <span class="error" id="cepError"></span>
+                </div>
+                <div class="form-group">
+                    <label for="nome_rua">Nome da rua:</label>
+                    <input type="text" id="nome_rua" name="nome_rua" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="numero">Número:</label>
+                    <input type="text" id="numero" name="numero" required>
+                    <span class="error" id="numeroError"></span>
+                </div>
+                <div class="form-group">
+                    <label for="cidade">Cidade:</label>
+                    <input type="text" id="cidade" name="cidade" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="estado">Estado:</label>
+                    <input type="text" id="estado" name="estado" readonly>
+                    <span class="error" id="estadoError"></span>
+                </div>
+                <div class="form-group">
+                    <label for="tipo_reparo">Tipo de reparo:</label>
+                    <input type="text" id="tipo_reparo" name="tipo_reparo" required>
+                    <span class="error" id="tipoReparoError"></span>
+                </div>
+                <div class="form-group">
+                    <label for="descricao">Descrição do problema:</label>
+                    <textarea id="descricao" name="descricao" rows="4" required></textarea>
+                    <span class="error" id="descricaoError"></span>
+                </div>
+                <div class="form-group">
+                    <label for="urgencia">Urgência:</label>
+                    <select id="urgencia" name="urgencia" required>
+                        <option value="baixa">Baixa</option>
+                        <option value="media">Média</option>
+                        <option value="alta">Alta</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="horario_contato">Melhor horário para atendimento:</label>
+                    <input type="text" id="horario_contato" name="horario_contato" placeholder="Ex: 14:00 - 18:00">
+                </div>
+                <div class="form-group">
+                    <label for="comentarios">Comentários adicionais:</label>
+                    <textarea id="comentarios" name="comentarios" rows="4"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="anexo">Enviar foto ou vídeo:</label>
+                    <input type="file" id="anexo" name="anexo" accept="image/*,video/*" class="file-input">
+                    <span class="error" id="anexoError"></span>
+                </div>
+                <div class="form-group">
+                    <input type="checkbox" id="termos" name="termos" required>
+                    <label for="termos">Li e concordo com os termos de serviço.</label>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Enviar">
+                </div>
+            </form>
+        </div>
+    </main>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('contactForm');
+            const nomeInput = document.getElementById('nome');
+            const emailInput = document.getElementById('email');
+            const telefoneInput = document.getElementById('telefone');
+            const dataNascimentoInput = document.getElementById('data_nascimento');
+            const cepInput = document.getElementById('cep');
+            const nomeRuaInput = document.getElementById('nome_rua');
+            const numeroInput = document.getElementById('numero');
+            const cidadeInput = document.getElementById('cidade');
+            const estadoInput = document.getElementById('estado');
+            const tipoReparoInput = document.getElementById('tipo_reparo');
+            const descricaoInput = document.getElementById('descricao');
+            const urgenciaInput = document.getElementById('urgencia');
+            const horarioContatoInput = document.getElementById('horario_contato');
+            const comentariosInput = document.getElementById('comentarios');
+            const termosInput = document.getElementById('termos');
+            const anexoInput = document.getElementById('anexo');
+            const nomeError = document.getElementById('nomeError');
+            const emailError = document.getElementById('emailError');
+            const telefoneError = document.getElementById('telefoneError');
+            const idadeError = document.getElementById('idadeError');
+            const cepError = document.getElementById('cepError');
+            const numeroError = document.getElementById('numeroError');
+            const estadoError = document.getElementById('estadoError');
+            const tipoReparoError = document.getElementById('tipoReparoError');
+            const descricaoError = document.getElementById('descricaoError');
+            const anexoError = document.getElementById('anexoError');
+
+            function validateName(name) {
+                return name.trim().length > 0;
+            }
+
+            function validateEmail(email) {
+                const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                return regex.test(email);
+            }
+
+            function validatePhone(phone) {
+                const regex = /^\+55 \(\d{2}\) 9\d{4}-\d{4}$/;
+                return regex.test(phone);
+            }
+
+            function validateDateOfBirth(date) {
+                const today = new Date();
+                const birthDate = new Date(date);
+                let age = today.getFullYear() - birthDate.getFullYear();
+                const m = today.getMonth() - birthDate.getMonth();
+                if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+                    age--;
+                }
+                return age >= 18;
+            }
+
+            function validateCEP(cep) {
+                return cep.length === 8;
+            }
+
+            function validateNumber(number) {
+                return number.trim().length > 0;
+            }
+
+            function validateState(state) {
+                return state.length === 2;
+            }
+
+            form.addEventListener('submit', function(event) {
+                event.preventDefault();
+
+                let valid = true;
+
+                if (!validateName(nomeInput.value)) {
+                    nomeError.textContent = 'Nome completo é obrigatório.';
+                    valid = false;
+                } else {
+                    nomeError.textContent = '';
+                }
+
+                if (!validateEmail(emailInput.value)) {
+                    emailError.textContent = 'E-mail inválido.';
+                    valid = false;
+                } else {
+                    emailError.textContent = '';
+                }
+
+                if (!validatePhone(telefoneInput.value)) {
+                    telefoneError.textContent = 'Telefone inválido. Utilize o formato +55 (DDD) 9XXXX-XXXX.';
+                    valid = false;
+                } else {
+                    telefoneError.textContent = '';
+                }
+
+                if (!validateDateOfBirth(dataNascimentoInput.value)) {
+                    idadeError.textContent = 'Você deve ter 18 anos ou mais para se registrar.';
+                    valid = false;
+                } else {
+                    idadeError.textContent = '';
+                }
+
+                if (!validateCEP(cepInput.value)) {
+                    cepError.textContent = 'CEP inválido. Deve conter 8 dígitos.';
+                    valid = false;
+                } else {
+                    cepError.textContent = '';
+                }
+
+                if (!validateNumber(numeroInput.value)) {
+                    numeroError.textContent = 'Número é obrigatório.';
+                    valid = false;
+                } else {
+                    numeroError.textContent = '';
+                }
+
+                if (!validateState(estadoInput.value)) {
+                    estadoError.textContent = 'Estado deve conter 2 caracteres.';
+                    valid = false;
+                } else {
+                    estadoError.textContent = '';
+                }
+
+                if (!validateName(tipoReparoInput.value)) {
+                    tipoReparoError.textContent = 'Tipo de reparo é obrigatório.';
+                    valid = false;
+                } else {
+                    tipoReparoError.textContent = '';
+                }
+
+                if (!validateName(descricaoInput.value)) {
+                    descricaoError.textContent = 'Descrição do problema é obrigatória.';
+                    valid = false;
+                } else {
+                    descricaoError.textContent = '';
+                }
+
+                if (valid) {
+                    alert('Cadastro realizado com sucesso!');
+                    // Aqui você pode adicionar a lógica para enviar o formulário se necessário
+                }
+            });
+
+            cepInput.addEventListener('blur', function() {
+                const cep = cepInput.value.replace(/\D/g, ''); // Remove caracteres não numéricos
+
+                if (cep.length === 8) {
+                    fetch(`https://viacep.com.br/ws/${cep}/json/`)
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.erro) {
+                                cepError.textContent = 'CEP não encontrado.';
+                                nomeRuaInput.value = '';
+                                cidadeInput.value = '';
+                                estadoInput.value = '';
+                            } else {
+                                cepError.textContent = '';
+                                nomeRuaInput.value = data.logradouro;
+                                cidadeInput.value = data.localidade;
+                                estadoInput.value = data.uf;
+                            }
+                        })
+                        .catch(() => {
+                            cepError.textContent = 'Erro ao buscar o CEP.';
+                            nomeRuaInput.value = '';
+                            cidadeInput.value = '';
+                            estadoInput.value = '';
+                        });
+                } else {
+                    cepError.textContent = 'CEP inválido. Deve conter 8 dígitos.';
+                    nomeRuaInput.value = '';
+                    cidadeInput.value = '';
+                    estadoInput.value = '';
+                }
+            });
+        });
+    </script>
+    <footer>
+     
+     <ul class="menu">
+
+
+        <li><a href="contato.html">Contato</a></li>
+        <li><a href="cliente.html">Atendimento ao cliente</a></li>
+        <li><a href="zap.html" onclick="openWhatsApp()">WhatsApp</a></li>
+        <li><a href="prestador.html">Trabalhe conosco</a></li>
+        <li><a href="testecliente.html" rel="prev" >Cadastro do Cliente</a></li>
+    
+        </ul></section>
+        <div class="container">
+            <p>&copy; 2024 Empresa de Pequenos Reparos. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+</body>
+</html>

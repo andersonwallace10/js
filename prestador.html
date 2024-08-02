@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário para Prestadores de Serviços</title>
+    <link rel="shortcut icon" href="favicon_io (3)/favicon.ico"type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: auto;
+        }
+        .form-container {
+            max-width: 600px;
+            margin: auto;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input, textarea, select {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+        button, input[type="submit"] {
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover, input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Tio Paulo Pequenos Reparos</h1>
+    
+        <div class="container">
+            <nav>
+                <ul class="menu">
+                    <li><a href="home.html">Home</a></li>
+                    <li><a href="serviços.html" rel="next">Serviços Oferecidos</a></li>
+                    <li><a href="contato.html" rel="next">Contato</a></li>
+                    <li><a href="prestador.html" rel="prev">Trabalhe conosco</a></li>
+                    <li><a href="testecliente.html" rel="prev" >Cadastro do Cliente</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <div class="form-container">
+            <h2>Cadastro de Prestador de Serviços</h2>
+            <form id="providerForm">
+                <div class="form-group">
+                    <label for="nome">Nome completo:</label>
+                    <input type="text" id="nome" name="nome" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">E-mail:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="telefone">Telefone:</label>
+                    <input type="text" id="telefone" name="telefone" required>
+                </div>
+                <div class="form-group">
+                    <label for="endereco">Endereço:</label>
+                    <input type="text" id="endereco" name="endereco">
+                </div>
+                <div class="form-group">
+                    <label for="cidade">Cidade:</label>
+                    <input type="text" id="cidade" name="cidade">
+                </div>
+                <div class="form-group">
+                    <label for="cep">CEP:</label>
+                    <input type="text" id="cep" name="cep">
+                </div>
+                <div class="form-group">
+                    <label for="cnpj">CNPJ:</label>
+                    <input type="text" id="cnpj" name="cnpj" maxlength="18" required>
+                    <span class="error" id="cnpjError"></span>
+                </div>
+                <div class="form-group">
+                    <label>Especialidades:</label>
+                    <div>
+                        <input type="checkbox" id="especialidade1" name="especialidades" value="elétrica">
+                        <label for="especialidade1">Elétrica</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="especialidade2" name="especialidades" value="hidráulica">
+                        <label for="especialidade2">Hidráulica</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="especialidade3" name="especialidades" value="marcenaria">
+                        <label for="especialidade3">Marcenaria</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="especialidade4" name="especialidades" value="pintura">
+                        <label for="especialidade4">Pintura</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="especialidade5" name="especialidades" value="jardinagem">
+                        <label for="especialidade5">Jardinagem</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="descricao_experiencia">Descrição da experiência:</label>
+                    <textarea id="descricao_experiencia" name="descricao_experiencia" rows="4" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="disponibilidade">Disponibilidade:</label>
+                    <select id="disponibilidade" name="disponibilidade" required>
+                        <option value="integral">Integral</option>
+                        <option value="parcial">Parcial</option>
+                        <option value="fins_de_semana">Fins de semana</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="portfolio">Link do portfólio (opcional):</label>
+                    <input type="text" id="portfolio" name="portfolio">
+                </div>
+                <div class="form-group">
+                    <label for="comentarios">Comentários adicionais:</label>
+                    <textarea id="comentarios" name="comentarios" rows="4"></textarea>
+                </div>
+                <div class="form-group">
+                    <input type="checkbox" id="termos" name="termos" required>
+                    <label for="termos">Li e concordo com os termos de serviço.</label>
+                </div>
+                <div class="form-group">
+                    <textarea id="termo_responsabilidade" rows="4" readonly>
+                        Eu, [Nome Completo], declaro que todas as informações fornecidas neste formulário são verdadeiras e precisas. Estou ciente de que fornecer informações falsas pode levar a consequências legais e a exclusão do meu cadastro.
+                    </textarea>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Enviar">
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('providerForm');
+            const cnpjInput = document.getElementById('cnpj');
+            const cnpjError = document.getElementById('cnpjError');
+
+            // Validação de CNPJ
+            function validarCNPJ(cnpj) {
+                cnpj = cnpj.replace(/\D/g, '');
+                
+                if (cnpj.length !== 14) {
+                    return false;
+                }
+                
+                let soma = 0;
+                let i;
+                const pesos = [6, 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2];
+                
+                for (i = 0; i < 12; i++) {
+                    soma += cnpj[i] * pesos[i + 1];
+                }
+                
+                let resto = (soma % 11);
+                let digito1 = resto < 2 ? 0 : 11 - resto;
+                
+                if (cnpj[12] != digito1) {
+                    return false;
+                }
+                
+                soma = 0;
+                
+                for (i = 0; i < 13; i++) {
+                    soma += cnpj[i] * pesos[i];
+                }
+                
+                resto = (soma % 11);
+                let digito2 = resto < 2 ? 0 : 11 - resto;
+                
+                if (cnpj[13] != digito2) {
+                    return false;
+                }
+                
+                return true;
+            }
+
+            cnpjInput.addEventListener('blur', function() {
+                const cnpj = cnpjInput.value;
+                
+                if (!validarCNPJ(cnpj)) {
+                    cnpjError.textContent = 'CNPJ inválido. Verifique o número e tente novamente.';
+                } else {
+                    cnpjError.textContent = '';
+                }
+            });
+
+            form.addEventListener('submit', function(event) {
+                event.preventDefault();
+                
+                const termosInput = document.getElementById('termos');
+                
+                if (!termosInput.checked) {
+                    alert('Você deve aceitar os termos de serviço.');
+                    return;
+                }
+
+                // Aqui você pode adicionar a lógica para enviar o formulário se necessário
+                alert('Cadastro realizado com sucesso!');
+            });
+
+            // Função para preencher o endereço automaticamente com base no CEP
+            document.getElementById('cep').addEventListener('blur', function() {
+                const cep = this.value.replace(/\D/g, '');
+                
+                if (cep.length === 8) {
+                    fetch(`https://viacep.com.br/ws/${cep}/json/`)
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.erro) {
+                                alert('CEP não encontrado.');
+                            } else {
+                                document.getElementById('endereco').value = data.logradouro;
+                                document.getElementById('cidade').value = data.localidade;
+                            }
+                        })
+                        .catch(() => {
+                            alert('Erro ao buscar o CEP.');
+                        });
+                }
+            });
+        });
+    </script>
+    <footer>
+        <ul class="menu">
+
+
+            <li><a href="contato.html">Contato</a></li>
+            <li><a href="cliente.html">Atendimento ao cliente</a></li>
+            <li><a href="zap.html" onclick="openWhatsApp()">WhatsApp</a></li>
+            <li><a href="prestador.html">Trabalhe conosco</a></li>
+            <li><a href="testecliente.html" rel="prev" >Cadastro do Cliente</a></li>
+        
+            </ul></section>
+        <div class="container">
+            <p>&copy; 2024 Empresa de Pequenos Reparos. Todos os direitos reservados.</p>
+        </div> 
+    </footer>
+</body>
+</html>
